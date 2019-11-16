@@ -37,17 +37,20 @@ function draw() {
     for (let i = 0; i < numCol; i++) {
       for (let j = 0; j < numRow; j++) {
         ellipse(table[i][j].x, table[i][j].y, .5);
-        d = dist(center[z].x, center[z].y, table[i][j].x, table[i][j].y);
+      
         //Verbindungslinien
-
         line(w / 2, j * h + h / 2, (numCol - 1) * w + w / 2, j * h + h / 2);
         vec = p5.Vector.sub(table[i][j], center[z]);
         vec.setMag(w*2);
+        
+        //Abstandsmessung um Auswahl treffen zu können
+        d = dist(center[z].x, center[z].y, table[i][j].x, table[i][j].y);
         if (d < w*5) {
           push();
           stroke(220, 20, 60);
           strokeWeight(.5);
           fill(220, 20, 60);
+          //Pfeile zeichnen lassen
           translate(table[i][j].x, table[i][j].y);
           line(0, 0, vec.x, vec.y);
           rotate(vec.heading());
